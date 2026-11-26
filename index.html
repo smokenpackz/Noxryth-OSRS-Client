@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Noxryth OSRS | Account Center</title>
+<link rel="icon" href="noxryth_logo.png">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: #090909;
+    background: radial-gradient(ellipse at center, #250000, #080808 70%);
     color: #ffffff;
     font-family: Arial, sans-serif;
     display: flex;
@@ -16,66 +21,104 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px;
 }
 
 .panel {
-    background: #151515;
+    background: #111111;
     border: 1px solid #a00000;
-    border-radius: 12px;
-    padding: 40px;
-    width: 85%;
-    max-width: 420px;
+    border-radius: 14px;
+    padding: 30px;
+    width: 100%;
+    max-width: 520px;
     text-align: center;
-    box-shadow: 0 0 35px #650000;
+    box-shadow: 0 0 40px #500000;
 }
 
 .logo {
-    font-size: 65px;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
 }
 
 h1 {
-    color: #e00000;
-    letter-spacing: 5px;
-}
-
-h2 {
-    font-size: 20px;
+    color: #ed2020;
+    font-size: 25px;
+    letter-spacing: 3px;
+    margin-top: 25px;
 }
 
 p {
-    color: #aaaaaa;
+    color: #bbbbbb;
     line-height: 1.6;
+    font-size: 15px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #650000;
+    margin: 25px 0;
+}
+
+.section {
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 15px;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 0;
 }
 
 .footer {
-    margin-top: 35px;
+    margin-top: 30px;
     font-size: 12px;
-    color: #777777;
+    color: #888888;
+    line-height: 1.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="panel">
-    <div class="logo">&#9760;</div>
+<main class="panel">
 
-    <h1>NOXRYTH</h1>
+    <img class="logo"
+         src="noxryth_logo.png"
+         alt="Noxryth OSRS Client">
 
-    <h2>OSRS Account Center</h2>
+    <h1>ACCOUNT CENTER</h1>
 
-    <p>Welcome to the official Noxryth account center.</p>
+    <p>Welcome to the official Noxryth OSRS Client account center.</p>
 
-    <p>If you have confirmed your email,
-    return to the Noxryth client and try logging in.</p>
+    <hr class="divider">
 
-    <p>Password recovery is currently under development.</p>
+    <section class="section">
+        <h2>Email Verification</h2>
+        <p>If you have confirmed your email address,
+        return to the Noxryth client and log in
+        to your account.</p>
+    </section>
+
+    <section class="section">
+        <h2>Password Recovery</h2>
+        <p>Secure password recovery is currently
+        under development.</p>
+    </section>
 
     <div class="footer">
         NOXRYTH OSRS CLIENT<br>
+        ACCOUNT MANAGEMENT PORTAL<br>
         &copy; 2026 Noxryth
     </div>
-</div>
+
+</main>
 
 </body>
 </html>
