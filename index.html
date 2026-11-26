@@ -14,7 +14,7 @@
 
 body {
     background: radial-gradient(ellipse at center, #250000, #080808 70%);
-    color: #ffffff;
+    color: white;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -38,7 +38,6 @@ body {
 .logo {
     width: 100%;
     max-width: 350px;
-    height: auto;
     border-radius: 8px;
 }
 
@@ -46,20 +45,16 @@ h1 {
     color: #ed2020;
     font-size: 25px;
     letter-spacing: 3px;
-    margin-top: 25px;
+}
+
+h2 {
+    font-size: 18px;
 }
 
 p {
     color: #bbbbbb;
     line-height: 1.6;
     font-size: 15px;
-}
-
-.divider {
-    border: 0;
-    height: 1px;
-    background: #650000;
-    margin: 25px 0;
 }
 
 .section {
@@ -70,10 +65,44 @@ p {
     margin-top: 15px;
 }
 
-h2 {
-    color: #ffffff;
-    font-size: 18px;
-    margin-top: 0;
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    background: #090909;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 6px;
+    padding: 14px;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+button, .button {
+    display: block;
+    width: 100%;
+    background: #b00000;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover, .button:hover {
+    background: #df0000;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.message {
+    overflow-wrap: anywhere;
+    margin-top: 15px;
 }
 
 .footer {
@@ -82,6 +111,10 @@ h2 {
     color: #888888;
     line-height: 1.6;
 }
+
+[hidden] {
+    display: none !important;
+}
 </style>
 </head>
 
@@ -89,53 +122,272 @@ h2 {
 
 <main class="panel">
 
-    <img class="logo"
-         src="noxryth_logo.png"
-         alt="Noxryth OSRS Client">
+<img class="logo"
+     src="noxryth_logo.png"
+     alt="Noxryth OSRS Client">
 
-    <h1>ACCOUNT CENTER</h1>
+<h1>ACCOUNT CENTER</h1>
 
-    <p>Welcome to the official Noxryth OSRS Client account center.</p>
+<p>Welcome to the official Noxryth OSRS Client account center.</p>
 
-    <hr class="divider">
+<section class="section" id="verification">
+    <h2>Email Verification</h2>
+    <p>If you have confirmed your email address,
+    return to the Noxryth client and log in.</p>
+</section>
 
-    <section class="section">
-        <h2>Email Verification</h2>
-        <p>If you have confirmed your email address,
-        return to the Noxryth client and log in
-        to your account.</p>
-    </section>
+<section class="section">
+    <h2>Password Recovery</h2>
 
-    <section class="section">
-        <h2>Password Recovery</h2>
-        <p>Secure password recovery is currently
-        under development.</p>
-    </section>
+    <p id="recoveryInstructions">
+        To reset your password, select Forgot Password
+        in the Noxryth client and follow the link
+        sent to your email.
+    </p>
+
+    <form id="resetForm" hidden>
+
+        <p>Enter your new password below.</p>
+
+        <input type="password"
+               id="password"
+               placeholder="New password"
+               aria-label="New password"
+               autocomplete="new-password"
+               minlength="12"
+               required>
+
+        <input type="password"
+               id="confirmPassword"
+               placeholder="Confirm new password"
+               aria-label="Confirm new password"
+               autocomplete="new-password"
+               minlength="12"
+               required>
+
+        <label>
+            <input type="checkbox" id="showPassword">
+            Show passwords
+        </label>
+
+        <p>Minimum 12 characters.</p>
+
+        <button type="submit" id="resetButton">
+            RESET PASSWORD
+        </button>
+
+    </form>
+
+    <p class="message" id="message" role="status"></p>
+
+</section>
+
 <section class="section">
     <h2>Join Our Community</h2>
+
     <p>Join the official Noxryth Discord for updates,
     downloads, support and announcements.</p>
 
-    <a href="https://discord.gg/UaBPKDTRC8"
+    <a class="button"
+       href="https://discord.gg/UaBPKDTRC8"
        target="_blank"
-       rel="noopener noreferrer"
-       style="display:block;
-              background:#b00000;
-              color:white;
-              padding:15px;
-              border-radius:8px;
-              text-decoration:none;
-              font-weight:bold;">
-        JOIN NOXRYTH DISCORD
+       rel="noopener noreferrer">
+       JOIN NOXRYTH DISCORD
     </a>
 </section>
-    <div class="footer">
-        NOXRYTH OSRS CLIENT<br>
-        ACCOUNT MANAGEMENT PORTAL<br>
-        &copy; 2026 Noxryth
-    </div>
+
+<div class="footer">
+    NOXRYTH OSRS CLIENT<br>
+    ACCOUNT MANAGEMENT PORTAL<br>
+    &copy; 2026 Noxryth
+</div>
 
 </main>
+
+<script type="module">
+
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+    "https://exxxtnbizsavffrqqzev.supabase.co",
+    "sb_publishable_eJuu3drs1M8DghnKxw9PCA_ea4lTLuq",
+    {
+        auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+        }
+    }
+);
+
+const form = document.getElementById("resetForm");
+const message = document.getElementById("message");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+const resetButton = document.getElementById("resetButton");
+
+let recoveryReady = false;
+
+function showMessage(text, success = false) {
+    message.textContent = text;
+    message.style.color = success ? "#4ade80" : "#ff6666";
+}
+
+function clearAuthUrl() {
+    window.history.replaceState(
+        null,
+        "",
+        window.location.pathname
+    );
+}
+
+async function initialize() {
+
+    const params = new URLSearchParams(
+        window.location.hash.substring(1)
+    );
+
+    const query = new URLSearchParams(
+        window.location.search
+    );
+
+    const type = params.get("type");
+    const accessToken = params.get("access_token");
+    const refreshToken = params.get("refresh_token");
+
+    const linkError =
+        params.get("error") || query.get("error");
+
+    clearAuthUrl();
+
+    if (linkError) {
+        showMessage(
+            "This link is invalid or expired. Please request a new email from Noxryth."
+        );
+        return;
+    }
+
+    if (type !== "recovery") {
+        return;
+    }
+
+    if (!accessToken || !refreshToken) {
+        showMessage(
+            "Recovery link is incomplete. Please request a new password reset."
+        );
+        return;
+    }
+
+    try {
+
+        const { data, error } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken
+        });
+
+        if (error || !data.session) {
+            showMessage(
+                "Recovery session is invalid or expired."
+            );
+            return;
+        }
+
+        recoveryReady = true;
+
+        document.getElementById("verification").hidden = true;
+
+        document.getElementById(
+            "recoveryInstructions"
+        ).hidden = true;
+
+        form.hidden = false;
+
+        showMessage(
+            "Recovery session established. Enter your new password.",
+            true
+        );
+
+    } catch {
+        showMessage(
+            "Unable to connect. Please request a new recovery link."
+        );
+    }
+}
+
+document.getElementById("showPassword")
+    .addEventListener("change", function () {
+
+        const inputType = this.checked
+            ? "text"
+            : "password";
+
+        password.type = inputType;
+        confirmPassword.type = inputType;
+    });
+
+form.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    if (!recoveryReady) {
+        showMessage("A valid recovery session is required.");
+        return;
+    }
+
+    if (password.value.length < 12) {
+        showMessage(
+            "Password must contain at least 12 characters."
+        );
+        return;
+    }
+
+    if (password.value !== confirmPassword.value) {
+        showMessage("Passwords do not match.");
+        return;
+    }
+
+    resetButton.disabled = true;
+    resetButton.textContent = "RESETTING PASSWORD...";
+
+    try {
+
+        const { error } = await supabase.auth.updateUser({
+            password: password.value
+        });
+
+        if (error) {
+            showMessage(error.message);
+            return;
+        }
+
+        recoveryReady = false;
+        password.value = "";
+        confirmPassword.value = "";
+        form.hidden = true;
+
+        await supabase.auth.signOut({
+            scope: "local"
+        });
+
+        showMessage(
+            "Password successfully updated! Return to Noxryth and log in with your new password.",
+            true
+        );
+
+    } catch {
+        showMessage(
+            "Unable to reset password. Please try again."
+        );
+    } finally {
+        resetButton.disabled = false;
+        resetButton.textContent = "RESET PASSWORD";
+    }
+});
+
+initialize();
+
+</script>
 
 </body>
 </html>
