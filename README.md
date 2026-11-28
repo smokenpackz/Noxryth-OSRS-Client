@@ -8,7 +8,7 @@ A Windows companion application for Old School RuneScape featuring a custom red 
 
 ## Current Version
 
-**v0.4.0 - Public Beta (Coming Soon)**
+**v0.4.0 - Public Beta (Available Now)**
 
 ## Features
 
@@ -36,13 +36,15 @@ A Windows companion application for Old School RuneScape featuring a custom red 
 
 ## Downloads
 
-The v0.4.0 public beta is currently being prepared.
+The Noxryth v0.4.0 Public Beta is officially available!
 
-[GitHub Releases](https://github.com/smokenpackz/Noxryth-OSRS-Client/releases)
+[Download Noxryth v0.4.0 for Windows](https://github.com/smokenpackz/Noxryth-OSRS-Client/releases/download/v0.4.0-beta/Noxryth_v0.4.0_Windows.zip)
+
+[View Release Notes](https://github.com/smokenpackz/Noxryth-OSRS-Client/releases/tag/v0.4.0-beta)
 
 ## Installation
 
-1. Download the Windows ZIP package once available.
+1. Download the Windows ZIP package.
 2. Extract all files.
 3. Launch Noxryth.exe.
 4. Create an account or log in.
@@ -62,15 +64,22 @@ The v0.4.0 public beta is currently being prepared.
 
 [Visit the Noxryth Account Center](https://smokenpackz.github.io/Noxryth-OSRS-Client/)
 
+## Download Verification
+
+SHA-256 checksum:
+
+6073e07699ae44b9accb341e81f8c8c28d2010a85b29662d4885543c6cd606d8
+
+Use this checksum to verify the integrity of your download.
+
 ## Beta Notice
 
-Some features are experimental and may produce
-inaccurate results. Demonstration modules do not
-send inputs to RuneScape.
+Some features are experimental and may produce inaccurate results. Demonstration modules do not send inputs to RuneScape.
+
+Please report bugs and provide feedback through our official Discord server.
 
 ## Disclaimer
 
-Noxryth is an independent project and is not
-affiliated with Jagex or RuneLite.
+Noxryth is an independent project and is not affiliated with Jagex or RuneLite.
 
-Copyright 2026 Noxryth.
+**Copyright 2026 Noxryth.**
